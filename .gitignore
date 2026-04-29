@@ -1,30 +1,31 @@
-# Byte-compiled / optimized / DLL files
+# Python bytecode
 __pycache__/
 *.py[cod]
 *$py.class
-*.pyc
 *.py~
 
-# Distribution / packaging
+# Build and packaging
 .Python
-develop-eggs/
+build/
 dist/
 downloads/
 eggs/
 .eggs/
+lib/
 lib64/
 parts/
 sdist/
 var/
 wheels/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-tags
 MANIFEST
 
-# Environments
+# Virtual environments
 .env
+.envrc
 .venv
 env/
 venv/
@@ -32,24 +33,60 @@ ENV/
 env.bak/
 venv.bak/
 
+# C extensions
+*.so
+
+# Test and coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.pytest_cache/
+.hypothesis/
+.cache
+coverage.xml
+*.cover
+*.py.cover
+
+# Type checking and lint caches
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# Notebook and docs
+.ipynb_checkpoints
+docs/_build/
+/site
+
+# Logs and local DBs
+*.log
+pip-log.txt
+pip-delete-this-directory.txt
+db.sqlite3
+db.sqlite3-journal
+
 # Dependency directories
 node_modules/
 jspm_packages/
 
-# IDEs and editors
+# IDE/editor files
 .vscode/
 .vs/
 .idea/
 .kdev4/
 *.kdev4
-*.DS_Store
 *.swp
+*.DS_Store
+tempCodeRunnerFile.py
+
+# Project-specific
 *.comp.js
 .wnf-lang-status
 *debug.log
-
-# Helix Editor
 .helix/
-
-# Aider AI Chat
 .aider*
+.streamlit/secrets.toml
