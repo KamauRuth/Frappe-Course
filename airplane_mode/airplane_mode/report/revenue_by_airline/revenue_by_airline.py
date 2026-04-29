@@ -1,26 +1,34 @@
 import frappe
 
 def execute(filters=None):
-    # Fetch all airlines
-    airlines = frappe.get_all("Airline", fields=["name"])
-    data = []
+    columns = [
+        {
+            "label": "Airline",
+            "fieldname": "airline",
+            "fieldtype": "Link",
+            "options": "Airline",
+            "width": 240,
+        },
+        {
+            "label": "Revenue",
+            "fieldname": "revenue",
+            "fieldtype": "Currency",
+            "width": 160,
+        },
+    ]
 
-    # Loop through each airline and calculate total revenue
-    for airline in airlines:
-        # Query total revenue for each airline
-        total_revenue = frappe.db.sql("""
-            SELECT SUM(flight_price)
-            FROM `tabAirplane Ticket`
-            WHERE airline = %s AND docstatus = 1
-        """, (airline.name,), as_list=True)
-        
-        # If revenue exists, use it; otherwise, set it to 0
-        revenue = total_revenue[0][0] if total_revenue else 0
+    data = frappe.db.sql(
+        """
+        SELECT
+            al.name AS airline,
+            COALESCE(SUM(tk.flight_price), 0) AS revenue
+        FROM `tabAirline` al
+        LEFT JOIN `tabAirplane` ap ON ap.airline = al.name
+        LEFT JOIN `tabAirplane Ticket` tk ON tk.flight = ap.name AND tk.docstatus = 1
+        GROUP BY al.name
+        ORDER BY revenue DESC, al.name ASC
+        """,
+        as_dict=True,
+    )
 
-        # Append results to data list
-        data.append({
-            "Airline": airline.name,
-            "Revenue": revenue
-        })
-
-    return data
+    return columns, data

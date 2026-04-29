@@ -1,0 +1,29 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-04-30 00:26:11.372980",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-04-30 00:53:09.093226",
+ "modified_by": "Administrator",
+ "module": "Airplane Mode",
+ "name": "Airplane Audit Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Airplane Audit",
+ "report_name": "Airplane Audit Report",
+ "report_script": "\nimport frappe\ndef execute(filters=None):\n    # Fetch all airplanes and their audits\n    airplanes = frappe.get_all(\"Airplane\", fields=[\"name\"])\n    data = []\n\n    for airplane in airplanes:\n        # Get all audits for the airplane\n        audits = frappe.get_all(\"Airplane Audit\", filters={\"airplane\": airplane.name}, fields=[\"audit_date\", \"audit_type\", \"status\", \"audit_result\", \"inspector\"])\n        \n        for audit in audits:\n            data.append({\n                \"Airplane\": airplane.name,\n                \"Audit Date\": audit.audit_date,\n                \"Audit Type\": audit.audit_type,\n                \"Status\": audit.status,\n                \"Audit Result\": audit.audit_result,\n                \"Inspector\": audit.inspector\n            })\n\n    return data",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "timeout": 0
+}

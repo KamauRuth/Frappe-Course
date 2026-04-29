@@ -8,7 +8,8 @@
  "field_order": [
   "model",
   "airline",
-  "capacity"
+  "capacity",
+  "airplane_audits"
  ],
  "fields": [
   {
@@ -33,12 +34,18 @@
    "label": "Capacity",
    "non_negative": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "airplane_audits",
+   "fieldtype": "Table",
+   "label": "Airplane Audits",
+   "options": "Airplane Audit"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-29 12:42:33.985541",
+ "modified": "2026-04-30 00:23:36.777191",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane",

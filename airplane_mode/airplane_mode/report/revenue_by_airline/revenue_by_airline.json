@@ -2,7 +2,7 @@
  "add_total_row": 0,
  "add_translate_data": 0,
  "columns": [],
- "creation": "2026-04-29 22:45:59.200638",
+ "creation": "2026-04-30 00:37:40.576298",
  "disabled": 0,
  "docstatus": 0,
  "doctype": "Report",
@@ -10,23 +10,21 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": null,
- "modified": "2026-04-29 23:34:03.763852",
+ "modified": "2026-04-30 00:37:40.576298",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Revenue by Airline",
  "owner": "Administrator",
  "prepared_report": 0,
- "query": "def execute(filters=None):\n    airlines = frappe.get_all(\"Airline\", fields=[\"name\"])\n    data = []\n\n    for airline in airlines:\n        # Modified query to check all tickets, not just submitted\n        total_revenue = frappe.db.sql(\"\"\"\n            SELECT SUM(flight_price)\n            FROM `tabAirplane Ticket`\n            WHERE airline = %s\n        \"\"\", (airline.name,), as_list=True)\n\n        # If no data, set revenue to 0\n        revenue = total_revenue[0][0] if total_revenue else 0\n\n        data.append({\n            \"Airline\": airline.name,\n            \"Revenue\": revenue\n        })\n    \n    # Handle case where no data is found\n    if not data:\n        frappe.msgprint(\"No data available for Revenue by Airline report.\")\n    \n    return data",
  "ref_doctype": "Airplane Ticket",
  "report_name": "Revenue by Airline",
- "report_script": "def execute(filters=None):\n    airlines = frappe.get_all(\"Airline\", fields=[\"name\"])\n    data = []\n\n    for airline in airlines:\n        # Modified query to check all tickets, not just submitted\n        total_revenue = frappe.db.sql(\"\"\"\n            SELECT SUM(flight_price)\n            FROM `tabAirplane Ticket`\n            WHERE airline = %s\n        \"\"\", (airline.name,), as_list=True)\n\n        # If no data, set revenue to 0\n        revenue = total_revenue[0][0] if total_revenue else 0\n\n        data.append({\n            \"Airline\": airline.name,\n            \"Revenue\": revenue\n        })\n    \n    # Handle case where no data is found\n    if not data:\n        frappe.msgprint(\"No data available for Revenue by Airline report.\")\n    \n    return data",
  "report_type": "Script Report",
  "roles": [
   {
    "role": "System Manager"
   },
   {
-   "role": "Airline Manager"
+   "role": "Flight Crew"
   },
   {
    "role": "Ticket Agent"
