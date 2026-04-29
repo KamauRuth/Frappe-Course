@@ -12,7 +12,8 @@
   "date_of_depature",
   "time_of_depature",
   "duration",
-  "status"
+  "status",
+  "crew_members"
  ],
  "fields": [
   {
@@ -63,13 +64,19 @@
    "fieldtype": "Select",
    "label": "Status",
    "options": "Scheduled\nCompleted\nCancelled"
+  },
+  {
+   "fieldname": "crew_members",
+   "fieldtype": "Table MultiSelect",
+   "label": "Crew Members",
+   "options": "Crew Member"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-29 21:11:43.620681",
+ "modified": "2026-04-30 01:15:24.834727",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Flight",

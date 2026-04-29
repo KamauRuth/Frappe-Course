@@ -42,9 +42,21 @@ class AirplaneTicket(Document):
         # Combine to create the seat value
         self.seat = f"{seat_number}{seat_letter}"
 
-    def check_seat_availability(self):
-        airplane = frappe.get_doc("Airplane", self.flight.airplane)
-        ticket_count = frappe.db.count("Airplane Ticket", filters={"flight": self.flight})
+        def check_seat_availability(self):
+            airplane = frappe.get_doc("Airplane", self.flight.airplane)
+            ticket_count = frappe.db.count("Airplane Ticket", filters={"flight": self.flight})
+            
+            if ticket_count >= airplane.capacity:
+                frappe.throw("Cannot create ticket. Flight capacity exceeded.")
+    
+    
+    def update_gate_number(flight_name):
+        # Get the new gate number from the flight
+        flight = frappe.get_doc("Flight", flight_name)
+        new_gate_number = flight.gate_number
+    
+        # Update all linked airplane tickets with the new gate number
+        tickets = frappe.get_all("Airplane Ticket", filters={"flight": flight_name}, fields=["name"])
         
-        if ticket_count >= airplane.capacity:
-            frappe.throw("Cannot create ticket. Flight capacity exceeded.")
+        for ticket in tickets:
+            frappe.db.set_value("Airplane Ticket", ticket.name, "gate_number", new_gate_number)

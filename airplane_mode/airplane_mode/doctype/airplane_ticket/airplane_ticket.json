@@ -9,6 +9,7 @@
   "section_break_1dry",
   "amended_from",
   "passenger",
+  "airline",
   "source_airport",
   "destination_airport",
   "source_airport_code",
@@ -21,7 +22,7 @@
   "flight_price",
   "add_ons",
   "total_amount",
-  "airline"
+  "gate_number"
  ],
  "fields": [
   {
@@ -128,6 +129,11 @@
    "label": "Airline",
    "options": "Airline",
    "reqd": 1
+  },
+  {
+   "fieldname": "gate_number",
+   "fieldtype": "Data",
+   "label": "Gate Number"
   }
  ],
  "grid_page_length": 50,
@@ -139,7 +145,7 @@
    "link_fieldname": "passenger"
   }
  ],
- "modified": "2026-04-29 23:29:26.010474",
+ "modified": "2026-04-30 01:16:31.082190",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Ticket",
@@ -180,6 +186,41 @@
    "role": "Ticket Agent",
    "share": 1,
    "write": 1
+    },
+    {
+     "create": 1,
+     "email": 1,
+     "export": 1,
+     "print": 1,
+     "read": 1,
+     "report": 1,
+     "role": "Flight Crew Member",
+     "share": 1,
+     "write": 1
+    },
+    {
+     "create": 1,
+     "delete": 1,
+     "email": 1,
+     "export": 1,
+     "print": 1,
+     "read": 1,
+     "report": 1,
+     "role": "Travel Agent",
+     "share": 1,
+     "write": 1
+    },
+    {
+     "create": 1,
+     "delete": 1,
+     "email": 1,
+     "export": 1,
+     "print": 1,
+     "read": 1,
+     "report": 1,
+     "role": "Airport Authority Personnel",
+     "share": 1,
+     "write": 1
   }
  ],
  "row_format": "Dynamic",
