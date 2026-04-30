@@ -1,0 +1,32 @@
+meta {
+  name: Create Shop
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/api/resource/Shop
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: token {{API_KEY}}:{{API_SECRET}}
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "shop_number": "005",
+    "shop_name": "Books Corner",
+    "shop_type": "Stall",
+    "tenant": "John Doe",
+    "contract_start_date": "2026-05-01",
+    "contract_end_date": "2027-04-30",
+    "rent_amount": 6500,
+    "rent_paid": 1000,
+    "rent_due_date": "2026-06-01",
+    "status": "Leased"
+  }
+}

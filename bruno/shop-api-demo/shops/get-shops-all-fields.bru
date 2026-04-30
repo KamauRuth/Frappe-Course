@@ -1,0 +1,16 @@
+meta {
+  name: Get Shops (All Fields)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{BASE_URL}}/api/resource/Shop?fields=["*"]
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: token {{API_KEY}}:{{API_SECRET}}
+  Accept: application/json
+}

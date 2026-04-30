@@ -1,12 +1,11 @@
-import frappe
 import random
-import string
+
+import frappe
 from frappe.model.document import Document
 
-class AirplaneTicket(Document):
 
+class AirplaneTicket(Document):
     def validate(self):
-        # Call other validation methods
         self.calculate_total_amount()
         self.remove_duplicate_addons()
         self.generate_seat()
@@ -35,28 +34,16 @@ class AirplaneTicket(Document):
         self.add_ons = unique_addons
 
     def generate_seat(self):
-        # Generate random seat number (1-100)
         seat_number = random.randint(1, 100)
-        # Generate random letter (A-E)
-        seat_letter = random.choice(['A', 'B', 'C', 'D', 'E'])
-        # Combine to create the seat value
+        seat_letter = random.choice(["A", "B", "C", "D", "E"])
         self.seat = f"{seat_number}{seat_letter}"
 
-        def check_seat_availability(self):
-            airplane = frappe.get_doc("Airplane", self.flight.airplane)
-            ticket_count = frappe.db.count("Airplane Ticket", filters={"flight": self.flight})
-            
-            if ticket_count >= airplane.capacity:
-                frappe.throw("Cannot create ticket. Flight capacity exceeded.")
-    
-    
-    def update_gate_number(flight_name):
-        # Get the new gate number from the flight
-        flight = frappe.get_doc("Flight", flight_name)
-        new_gate_number = flight.gate_number
-    
-        # Update all linked airplane tickets with the new gate number
-        tickets = frappe.get_all("Airplane Ticket", filters={"flight": flight_name}, fields=["name"])
-        
-        for ticket in tickets:
-            frappe.db.set_value("Airplane Ticket", ticket.name, "gate_number", new_gate_number)
+    def check_seat_availability(self):
+        if not self.flight:
+            return
+
+        airplane = frappe.get_doc("Airplane", self.flight)
+        ticket_count = frappe.db.count("Airplane Ticket", filters={"flight": self.flight})
+
+        if ticket_count >= airplane.capacity:
+            frappe.throw("Cannot create ticket. Flight capacity exceeded.")

@@ -67,7 +67,7 @@
   },
   {
    "fieldname": "crew_members",
-   "fieldtype": "Table MultiSelect",
+   "fieldtype": "Table",
    "label": "Crew Members",
    "options": "Crew Member"
   }
@@ -76,7 +76,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-30 01:15:24.834727",
+ "modified": "2026-04-30 01:56:02.350380",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Flight",
